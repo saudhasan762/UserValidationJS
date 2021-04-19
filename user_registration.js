@@ -27,5 +27,13 @@ const userValidation = () => {
         console.log("Valid Phone Number");
     else
         console.log("Invalid Phone Number");
+
+    let password1 = prompt('Enter the Password : ');
+    let password1Regex =RegExp('^([!@#$%^&* a-z A-Z 0-9]){8,}$');
+    if(password1Regex.test(password1))
+        console.log("Valid password");
+    else
+        console.log("Invalid password");
+    
 }
 userValidation();
