@@ -20,5 +20,12 @@ const userValidation = () => {
         console.log("Valid Email");
     else
         console.log("Invalid Email");
+
+    let phoneNumber = prompt('Enter the phone number : ');
+    let phoneNmberRegex =RegExp('^([9]{1}[1]{1})\\s{0,1}[0-9]{10}$');
+    if(phoneNmberRegex.test(phoneNumber))
+        console.log("Valid Phone Number");
+    else
+        console.log("Invalid Phone Number");
 }
 userValidation();
