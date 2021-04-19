@@ -6,5 +6,12 @@ const userValidation = () => {
         console.log("Valid First Name");
     else
         console.log("Invalid First Name");
+
+    let lastname = prompt('Enter the Last Name : ');
+    let lnameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
+    if (lnameRegex.test(lastname))
+        console.log("Valid Last Name");
+    else
+        console.log("Invalid Last Name");
 }
 userValidation();
