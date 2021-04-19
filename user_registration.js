@@ -35,5 +35,13 @@ const userValidation = () => {
     else
         console.log("Invalid password");
     
+    let password2 = prompt('Enter the Password 2 : ');
+    let password2Regex =RegExp('^(?=.*?[A-Z])([!@#$%^&* A-Z a-z 0-9]){8,}$');
+    if(password2Regex.test(password2))
+        console.log("Valid password");
+    else
+        console.log("Invalid password");
+    
+    
 }
 userValidation();
