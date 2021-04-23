@@ -1,0 +1,23 @@
+{
+  "name": "userregistration",
+  "version": "1.0.0",
+  "description": "Testing User input",
+  "main": "(utility.js)",
+  "scripts": {
+    "test": "mocha || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saudhasan762/UserValidationJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saudhasan762/UserValidationJS/issues"
+  },
+  "homepage": "https://github.com/saudhasan762/UserValidationJS#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
+  }
+}

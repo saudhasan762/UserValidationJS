@@ -3,10 +3,10 @@ module.exports = {
     test(regex, input) {
         //let input = prompt('Value : ');
         if (regex.test(input)) {
-            console.log("Valid Input");
+            //console.log("Valid Input");
             return true
         } else {
-            console.log("Invalid Input, Please Enter again...");
+            //console.log("Invalid Input, Please Enter again...");
             return false;
         }
 

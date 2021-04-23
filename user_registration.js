@@ -1,16 +1,11 @@
 let utility = require('./utility');
 const prompt = require('prompt-sync')();
-
-const fnameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
-const lnameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
-const emailRegex = RegExp('^[a-zA-Z0-9]+([_+-.]{0,1})([@]{1})[a-z0-1]+.[a-z]+(.?)([a-z]{2}?)$');
-const phoneNmberRegex = RegExp('^([9]{1}[1]{1})\\s{0,1}[0-9]{10}$');
-const password4Regex = RegExp('^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z])(?=.*[#?!@$%^&*-]).{8,}$');
+const cons = require('./constant');
 
 let arr = [];
 const userValidation = (string, regex) => {
     return new Promise((resolve, reject) => {
-        //console.log(string);
+        //console.log(string); 
         let flag = false;
         while (!flag) {
             let value = prompt(string);
@@ -24,11 +19,11 @@ const userValidation = (string, regex) => {
     });
 }
 
-userValidation("Enter First Name =>", fnameRegex)
-    .then(() => userValidation("Enter Last Name =>", lnameRegex))
-    .then(() => userValidation("Enter Email =>", emailRegex))
-    .then(() => userValidation("Enter Phone Number=>", phoneNmberRegex))
-    .then(() => userValidation("Enter Password=>", password4Regex))
+userValidation("Enter First Name =>", cons.fnameRegex)
+    .then(() => userValidation("Enter Last Name =>", cons.lnameRegex))
+    .then(() => userValidation("Enter Email =>", cons.emailRegex))
+    .then(() => userValidation("Enter Phone Number=>", cons.phoneNmberRegex))
+    .then(() => userValidation("Enter Password=>", cons.password4Regex))
     .then(() => utility.display(arr[0], arr[1], arr[2], arr[3], arr[4]))
     .catch((err) => {
         console.log(err);
