@@ -1,60 +1,56 @@
+let utility = require('./utility');
 const prompt = require('prompt-sync')();
-const userValidation = () => {
-    let firstName = prompt('Enter the First Name : ')
-    let fnameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
-    if (fnameRegex.test(firstName))
-        console.log("Valid First Name");
-    else
-        console.log("Invalid First Name");
 
-    let lastname = prompt('Enter the Last Name : ');
-    let lnameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
-    if (lnameRegex.test(lastname))
-        console.log("Valid Last Name");
-    else
-        console.log("Invalid Last Name");
+const fnameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
+const lnameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
+const emailRegex = RegExp('^[a-zA-Z0-9]+([_+-.]{0,1})([@]{1})[a-z0-1]+.[a-z]+(.?)([a-z]{2}?)$');
+const phoneNmberRegex = RegExp('^([9]{1}[1]{1})\\s{0,1}[0-9]{10}$');
+const password4Regex = RegExp('^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z])(?=.*[#?!@$%^&*-]).{8,}$');
 
-    let email = prompt('Enter the email address : ');
-    let emailRegex =RegExp('^[a-zA-Z0-9]+([_+-.]{0,1})([@]{1})[a-z0-1]+.[a-z]+(.?)([a-z]{2}?)$');
-    if(emailRegex.test(email))
-        console.log("Valid Email");
-    else
-        console.log("Invalid Email");
-
-    let phoneNumber = prompt('Enter the phone number : ');
-    let phoneNmberRegex =RegExp('^([9]{1}[1]{1})\\s{0,1}[0-9]{10}$');
-    if(phoneNmberRegex.test(phoneNumber))
-        console.log("Valid Phone Number");
-    else
-        console.log("Invalid Phone Number");
-
-    let password1 = prompt('Enter the Password : ');
-    let password1Regex =RegExp('^([!@#$%^&* a-z A-Z 0-9]){8,}$');
-    if(password1Regex.test(password1))
-        console.log("Valid password");
-    else
-        console.log("Invalid password");
-    
-    let password2 = prompt('Enter the Password 2 : ');
-    let password2Regex =RegExp('^(?=.*?[A-Z])([!@#$%^&* A-Z a-z 0-9]){8,}$');
-    if(password2Regex.test(password2))
-        console.log("Valid password");
-    else
-        console.log("Invalid password");
-
-    let password3 = prompt('Enter the Password 3 : ');
-    let password3Regex =RegExp('^(?=.*?[A-Z])(?=.*?[0-9])([!@#$%^&* A-Z a-z 0-9]){8,}$');
-    if(password3Regex.test(password3))
-        console.log("Valid password");
-    else
-        console.log("Invalid password");
-
-    let password4 = prompt('Enter the Password 4 : ');
-    let password4Regex =RegExp('^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z])(?=.*[#?!@$%^&*-]).{8,}$');
-    if(password4Regex.test(password4))
-        console.log("Valid password");
-    else
-        console.log("Invalid password");
-    
+let arr = [];
+const userValidation = (string, regex) => {
+    return new Promise((resolve, reject) => {
+        //console.log(string);
+        let flag = false;
+        while (!flag) {
+            let value = prompt(string);
+            flag = utility.test(regex, value);
+            if (flag) {
+                arr.push(value);
+                resolve();
+                break;
+            }
+        }
+    });
 }
-userValidation();
+
+userValidation("Enter First Name =>", fnameRegex)
+    .then(() => userValidation("Enter Last Name =>", lnameRegex))
+    .then(() => userValidation("Enter Email =>", emailRegex))
+    .then(() => userValidation("Enter Phone Number=>", phoneNmberRegex))
+    .then(() => userValidation("Enter Password=>", password4Regex))
+    .then(() => utility.display(arr[0], arr[1], arr[2], arr[3], arr[4]))
+    .catch((err) => {
+        console.log(err);
+    })
+// userValidation("Enter for Last Name =>", lnameRegex);
+// userValidation("Enter for Email", emailRegex);
+// userValidation("Enter for Phone Number", phoneNmberRegex);
+// userValidation("Enter for Password", password4Regex);
+
+/*const userValidation = (string, regex) => {
+    return new Promise((resolve, reject) => {
+        console.log(string);
+        let flag = false;
+        setTimeout(() => {
+            while (!flag) {
+                flag = utility.test(regex);
+                if (flag){
+                    resolve();
+                    break;
+                }
+            }
+        }, 2000);
+    });
+}*/
+
